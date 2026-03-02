@@ -1,301 +1,707 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Shop</title>
+    <title>English with Svetlana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: 'Open Sans', sans-serif;
+            background-image: url('background.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .nav-link, .btn { font-family: 'Montserrat', sans-serif; }
+
+        :root {
+            --light-blue: #A7D8F0;
+            --accent-blue: #6BC4E8;
+            --bg-light: rgba(207, 243, 255, 0.8);
+            --neon-glow: #00E5FF;
+            --white: rgba(255, 255, 255, 0.95);
+            --text-dark: #2c3e50;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #000000 !important;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 3px;
+            background: #FFFFFF;
+            margin: 10px auto 0;
+            box-shadow: 0 0 10px #00E5FF, 0 0 20px #00E5FF, 0 0 30px rgba(0, 229, 255, 0.8);
+            border-radius: 2px;
+        }
+
+        .section-title::after {
+            margin: 0 auto 10px;
+        }
+
+        section { 
+            padding: 80px 0;
+            background: transparent !important;
+        }
+
+        #contacts {
+            padding: 40px 0 !important;
+        }
+
+        .top-slogan {
+            background-color: var(--accent-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 8px 15px;
+            font-family: 'Marck Script', cursive !important;
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.3;
+            box-shadow: 0 2px 15px rgba(0, 229, 255, 0.4);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(167, 216, 240, 0.3);
+            padding: 10px 0;
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #000000 !important;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 2px solid var(--accent-blue);
+            display: inline-block;
+        }
+
+        .nav-link:hover {
+            color: var(--white) !important;
+            background: var(--accent-blue);
+            box-shadow: 0 0 15px var(--neon-glow);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 85vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: -60px;
+            background: transparent !important;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--bg-light) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .hero-content { flex: 1; padding-right: 50px; }
+
+        .hero-title {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .hero-features { max-width: 500px; margin: 0 auto; }
+
+        .feature-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .feature-card span { font-size: 2rem; }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 0;
+            color: #333;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid var(--white);
+            display: inline-block;
+            background: transparent;
+            color: #000000 !important;
+        }
+
+        .btn-primary {
+            background: transparent;
+            color: #000000 !important;
+            border: 2px solid var(--white);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-primary:hover {
+            background: var(--white);
+            color: var(--accent-blue) !important;
+            box-shadow: 0 0 25px var(--neon-glow);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #000000 !important;
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--accent-blue) !important;
+            box-shadow: 0 0 20px var(--neon-glow);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-frame {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--white);
+            box-shadow: 0 0 30px var(--neon-glow), inset 0 0 20px rgba(167, 216, 240, 0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .about-section {
+            background: transparent !important;
+        }
+
+        .about-text {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #000000 !important;
+            margin-bottom: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .about-text p { margin-bottom: 1.2rem; }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .method-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(167, 216, 240, 0.2);
+            transition: all 0.4s ease;
+            border-bottom: 3px solid var(--accent-blue);
+        }
+
+        .method-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 229, 255, 0.4);
+        }
+
+        .method-card h3 {
+            color: #000000 !important;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .method-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .method-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            color: #000000 !important;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
             padding: 20px;
         }
-        .container { max-width: 1200px; margin: 0 auto; }
-        header { text-align: center; color: white; margin-bottom: 40px; padding: 20px 0; }
-        header h1 { font-size: 2.5em; margin-bottom: 8px; }
-        header p { font-size: 1.1em; opacity: 0.95; }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .product-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-            transition: transform 0.25s ease;
-        }
-        .product-card:hover { transform: translateY(-5px); }
-        .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: #f5f5f5;
-        }
-        .product-info { padding: 20px; }
-        .product-title { font-size: 1.4em; color: #333; margin-bottom: 8px; }
-        .product-description { color: #666; margin-bottom: 12px; line-height: 1.5; font-size: 0.95em; }
-        .product-price { font-size: 1.6em; color: #667eea; font-weight: bold; margin-bottom: 12px; }
-        .buy-button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-        .buy-button:hover { opacity: 0.95; }
 
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.75);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        .modal-content {
-            background: white;
-            max-width: 800px;
-            margin: 40px auto;
-            border-radius: 12px;
+        .gallery-item {
+            border-radius: 15px;
             overflow: hidden;
-            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            background: rgba(249, 249, 249, 0.9);
         }
-        .close-modal {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 1.8em;
-            color: #333;
-            cursor: pointer;
-            z-index: 10;
-            background: rgba(255,255,255,0.8);
-            width: 36px; height: 36px;
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .video-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            background: #000;
+        }
+
+        .video-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-item:hover, .video-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--neon-glow);
+        }
+
+        .prices-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 10px 30px rgba(167, 216, 240, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-glow);
+            box-shadow: 0 15px 40px rgba(0, 229, 255, 0.4);
+        }
+
+        .price-title {
+            font-size: 1.3rem;
+            color: #000000 !important;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .price-period {
+            font-size: 1.1rem;
+            color: #777;
+        }
+
+        .price-card p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 15px;
+        }
+
+        .reviews-grid {
+            column-count: 4;
+            column-gap: 20px;
+            padding: 20px;
+        }
+
+        .review-item {
+            background: rgba(249, 249, 249, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 10px;
+            margin-bottom: 20px;
+            break-inside: avoid;
+        }
+
+        .review-item img {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .contacts-section {
+            background: transparent !important;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #000000 !important;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-light);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 10px rgba(107, 196, 232, 0.3);
         }
-        .close-modal:hover { background: white; }
 
-        /* Carousel */
-        .carousel { position: relative; width: 100%; height: 350px; background: #f0f0f0; }
-        .carousel-track { display: flex; transition: transform 0.4s ease; height: 100%; }
-        .carousel-slide { min-width: 100%; height: 100%; }
-        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
-        .carousel-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(255,255,255,0.9); border: none;
-            width: 40px; height: 40px; border-radius: 50%;
-            cursor: pointer; font-size: 1.2em; z-index: 5;
+        .contact-item a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 1.1rem;
         }
-        .carousel-btn.prev { left: 15px; }
-        .carousel-btn.next { right: 15px; }
-        .carousel-dots {
-            position: absolute; bottom: 15px; left: 50%;
-            transform: translateX(-50%); display: flex; gap: 8px;
-        }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.6); cursor: pointer; }
-        .dot.active { background: white; }
 
-        .modal-body { padding: 30px; }
-        .modal-title { font-size: 1.8em; color: #333; margin-bottom: 12px; }
-        .modal-description { color: #666; line-height: 1.7; margin-bottom: 20px; }
-        .modal-price { font-size: 2.2em; color: #667eea; font-weight: bold; margin-bottom: 20px; }
-        .modal-buy-button {
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; border: none; border-radius: 8px;
-            font-size: 1.1em; cursor: pointer;
+        .contact-item a:hover {
+            text-decoration: underline;
         }
-        .features { margin-top: 25px; padding-top: 25px; border-top: 1px solid #eee; }
-        .features h3 { margin-bottom: 12px; color: #333; font-size: 1.1em; }
-        .features ul { list-style: none; color: #666; }
-        .features li { padding: 6px 0; padding-left: 22px; position: relative; }
-        .features li:before { content: "✓"; position: absolute; left: 0; color: #667eea; font-weight: bold; }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 2em; }
-            .carousel { height: 220px; }
-            .modal-content { margin: 20px; }
-            .modal-body { padding: 20px; }
+        .contact-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contact-item p {
+            margin: 0;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 40px 0 !important; }
+            #contacts { padding: 20px 0 !important; }
+            .section-title { font-size: 1.8rem !important; }
+            .reviews-grid { column-count: 1 !important; }
+            .gallery-grid { grid-template-columns: 1fr !important; }
+            .hero { flex-direction: column-reverse; text-align: center; }
+            .hero-content { padding-right: 0; }
+            .hero-buttons { justify-content: center; }
+            .photo-frame { width: 300px; height: 300px; }
+            .prices-container { flex-direction: column; align-items: center; }
+            .price-card { width: 100%; max-width: 350px; }
+            
+            .top-slogan {
+                padding: 6px 10px !important;
+                font-size: 1.3rem !important;
+                line-height: 1.25 !important;
+                font-family: 'Marck Script', cursive !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title { font-size: 1.5rem !important; }
+            .nav-link { font-size: 0.8rem !important; padding: 6px 12px !important; }
+            
+            .top-slogan {
+                padding: 5px 8px !important;
+                font-size: 1.15rem !important;
+                line-height: 1.2 !important;
+                font-family: 'Marck Script', cursive !important;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>English Shop</h1>
-            <p>Premium digital products for your success</p>
-        </header>
 
-        <div class="products-grid">
-            <div class="product-card" data-product="courses">
-                <img src="https://picsum.photos/seed/courses1/600/400" alt="Courses">
-                <div class="product-info">
-                    <h3 class="product-title">Courses</h3>
-                    <p class="product-description">Professional online courses to boost your skills and knowledge.</p>
-                    <div class="product-price">5,000 ₽</div>
-                    <button class="buy-button" onclick="openModal('courses')">Buy Now</button>
+    <div class="top-slogan">
+        Учить английский легко, когда рядом тот, кто верит в тебя!
+    </div>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#about" class="nav-link">Обо мне</a></li>
+                <li><a href="#methodology" class="nav-link">Методика</a></li>
+                <li><a href="#lessons" class="nav-link">Уроки</a></li>
+                <li><a href="#prices" class="nav-link">Цены</a></li>
+                <li><a href="#reviews" class="nav-link">Отзывы</a></li>
+                <li><a href="#contacts" class="nav-link">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero container">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Репетитор английского с опытом более 20 лет, автор собственных игровых материалов, квестов, игр и обучающих мультфильмов.
+            </h1>
+            <div class="hero-features">
+                <div class="feature-card">
+                    <div>
+                        <span>👶</span>
+                        <p>Хотите, чтобы ваш ребёнок с первых шагов полюбил английский? Чтобы уроки были веселыми, и при этом давали реальный результат... Чтобы ОГЭ, ЕГЭ, TOEFL или IELTS были сданы на высокий балл без стресса... Тогда Вам ко мне!</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div>
+                        <span>👨‍💼</span>
+                        <p>Вы взрослый и хотите как можно быстрее заговорить по-английски, убрать барьер и уверенно использовать язык в жизни и работе? Тогда Вам тоже ко мне!</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="product-card" data-product="cards">
-                <img src="https://picsum.photos/seed/cards1/600/400" alt="Cards">
-                <div class="product-info">
-                    <h3 class="product-title">Cards</h3>
-                    <p class="product-description">Beautiful design cards and templates for your projects.</p>
-                    <div class="product-price">1,000 ₽</div>
-                    <button class="buy-button" onclick="openModal('cards')">Buy Now</button>
-                </div>
+            <div class="hero-buttons">
+                <a href="#contacts" class="btn btn-primary">Записаться на урок</a>
+                <a href="#about" class="btn btn-secondary">Узнать больше</a>
             </div>
+        </div>
+        <div class="hero-image">
+            <div class="photo-frame">
+                <img src="myphoto.jpg" alt="Светлана - преподаватель английского">
+            </div>
+        </div>
+    </section>
 
-            <div class="product-card" data-product="games">
-                <img src="https://picsum.photos/seed/games1/600/400" alt="Games">
-                <div class="product-info">
-                    <h3 class="product-title">Games</h3>
-                    <p class="product-description">Exciting games and interactive applications.</p>
-                    <div class="product-price">2,000 ₽</div>
-                    <button class="buy-button" onclick="openModal('games')">Buy Now</button>
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Обо мне</h2>
+            <div class="about-text">
+                <p>Меня зовут Светлана. Я — дипломированный учитель иностранных языков и занимаюсь репетиторством уже много лет. За годы практики я обучила сотни учеников разного возраста — от самых маленьких до взрослых, которые изучают язык для работы, путешествий или переезда в другую страну.</p>
+                <p>С самого детства я устраивала «уроки» для своих игрушек, рассаживала их по воображаемым партам и играла в школу. Тогда это казалось просто игрой, но именно в те моменты зародилось моё настоящее призвание — желание учить, зажигать интерес и открывать ученикам мир английского языка.</p>
+                <p>Будучи студенткой, в течение двух лет подряд (по пять месяцев каждый год) я проходила длительную стажировку в США. Это дало мне глубокое понимание живого языка, американской культуры и современных образовательных подходов, которые я активно использую на занятиях.</p>
+                <p>Помимо работы с малышами, я готовлю школьников к ОГЭ и ЕГЭ, а также к международным экзаменам TOEFL и IELTS. Мои ученики стабильно получают высокие баллы благодаря продуманной системе подготовки, индивидуальному подходу и вниманию к деталям.</p>
+                <p>Я регулярно прохожу курсы повышения квалификации, изучаю современные методики и внедряю новые инструменты в обучение. Помимо основных учебников, я использую собственные материалы: авторские карточки, рабочие тетради, интерактивные задания и онлайн ресурсы.</p>
+                <p>На моих уроках всегда живо, интересно и комфортно. Мы много говорим, играем, обсуждаем реальные ситуации, смотрим видео, выполняем творческие задания. Я также провожу групповые квесты на английском — это помогает ученикам раскрепоститься и начать говорить свободнее.</p>
+                <p>Моя цель — не просто научить английскому, а сделать процесс увлекательным и вдохновляющим, чтобы каждый ученик чувствовал уверенность и удовольствие от результата.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="methodology">
+        <div class="container">
+            <h2 class="section-title">Методика</h2>
+            <p class="method-intro">
+                Моя методика — это сочетание классических подходов и авторских материалов, созданных специально для разных уровней и возрастов. Я верю, что английский можно выучить легко и с удовольствием, если обучение построено грамотно и интересно.
+            </p>
+            <div class="methodology-grid">
+                <div class="method-card"><h3>Разговорная практика</h3><p>Развитие разговорных навыков с первого занятия. Мы говорим сразу, преодолевая языковой барьер.</p></div>
+                <div class="method-card"><h3>Реальные ситуации</h3><p>Погружение в реальные ситуации общения. Учимся тому, что пригодится в жизни, а не только в учебнике.</p></div>
+                <div class="method-card"><h3>Индивидуальный подход</h3><p>Индивидуальный темп и программа под цели ученика. Мы двигаемся в комфортном для Вас ритме.</p></div>
+                <div class="method-card"><h3>Интерактив и игры</h3><p>Использование интерактивных инструментов, игр и творческих заданий для вовлеченности.</p></div>
+                <div class="method-card"><h3>Правильное произношение</h3><p>Регулярная работа над произношением, чтобы Вас понимали носители языка.</p></div>
+                <div class="method-card"><h3>Стратегия экзаменов</h3><p>Системная подготовка к экзаменам с акцентом на стратегию выполнения заданий.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lessons">
+        <div class="container">
+            <h2 class="section-title">Фото и Видео</h2>
+            <div class="gallery-grid">
+                <div class="video-item"><video controls><source src="videos/video1.mp4" type="video/mp4"></video></div>
+                <div class="video-item"><video controls><source src="videos/video2.mp4" type="video/mp4"></video></div>
+                <div class="video-item"><video controls><source src="videos/video3.mp4" type="video/mp4"></video></div>
+                <div class="video-item"><video controls><source src="videos/video4.mp4" type="video/mp4"></video></div>
+                <div class="video-item"><video controls><source src="videos/video5.mp4" type="video/mp4"></video></div>
+                <div class="video-item"><video controls><source src="videos/video6.mp4" type="video/mp4"></video></div>
+                <div class="video-item"><video controls><source src="videos/video7.mp4" type="video/mp4"></video></div>
+                <div class="video-item"><video controls><source src="videos/video8.mp4" type="video/mp4"></video></div>
+                <div class="video-item"><video controls><source src="videos/video9.mp4" type="video/mp4"></video></div>
+                <div class="video-item"><video controls><source src="videos/video10.mp4" type="video/mp4"></video></div>
+                <div class="gallery-item"><img src="photos/photo1.jpg" alt="Фото 1"></div>
+                <div class="gallery-item"><img src="photos/photo2.jpg" alt="Фото 2"></div>
+                <div class="gallery-item"><img src="photos/photo3.jpg" alt="Фото 3"></div>
+                <div class="gallery-item"><img src="photos/photo4.jpg" alt="Фото 4"></div>
+                <div class="gallery-item"><img src="photos/photo5.jpg" alt="Фото 5"></div>
+                <div class="gallery-item"><img src="photos/photo6.jpg" alt="Фото 6"></div>
+                <div class="gallery-item"><img src="photos/photo7.jpg" alt="Фото 7"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prices">
+        <div class="container">
+            <h2 class="section-title">Цены</h2>
+            <div class="prices-container">
+                <div class="price-card">
+                    <h3 class="price-title">Индивидуальный урок</h3>
+                    <div class="price-amount">1900 ₽</div>
+                    <div class="price-period">(60 минут)</div>
+                    <p>Оффлайн / Онлайн</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-title">Мини-группа<br><span style="font-size:1rem;color:#666;font-weight:400;">(2-3 человека)</span></h3>
+                    <div class="price-amount">1200/1000 ₽</div>
+                    <div class="price-period">(60 минут)</div>
+                    <p>Оффлайн / Онлайн</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div class="carousel">
-                <div class="carousel-track" id="carouselTrack"></div>
-                <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
-                <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
-                <div class="carousel-dots" id="carouselDots"></div>
+    <section id="reviews">
+        <div class="container">
+            <h2 class="section-title">Отзывы</h2>
+            <div class="reviews-grid">
+                <div class="review-item"><img src="photos/photo11.jpg" alt="Отзыв 1"></div>
+                <div class="review-item"><img src="photos/photo22.jpg" alt="Отзыв 2"></div>
+                <div class="review-item"><img src="photos/photo33.jpg" alt="Отзыв 3"></div>
+                <div class="review-item"><img src="photos/photo44.jpg" alt="Отзыв 4"></div>
+                <div class="review-item"><img src="photos/photo55.jpg" alt="Отзыв 5"></div>
+                <div class="review-item"><img src="photos/photo66.jpg" alt="Отзыв 6"></div>
+                <div class="review-item"><img src="photos/photo77.jpg" alt="Отзыв 7"></div>
+                <div class="review-item"><img src="photos/photo88.jpg" alt="Отзыв 8"></div>
+                <div class="review-item"><img src="photos/photo99.jpg" alt="Отзыв 9"></div>
+                <div class="review-item"><img src="photos/photo111.jpg" alt="Отзыв 10"></div>
+                <div class="review-item"><img src="photos/photo222.jpg" alt="Отзыв 11"></div>
+                <div class="review-item"><img src="photos/photo333.jpg" alt="Отзыв 12"></div>
+                <div class="review-item"><img src="photos/photo444.jpg" alt="Отзыв 13"></div>
+                <div class="review-item"><img src="photos/photo555.jpg" alt="Отзыв 14"></div>
+                <div class="review-item"><img src="photos/photo666.jpg" alt="Отзыв 15"></div>
+                <div class="review-item"><img src="photos/photo777.jpg" alt="Отзыв 16"></div>
             </div>
-            <div class="modal-body">
-                <h2 class="modal-title" id="modalTitle"></h2>
-                <p class="modal-description" id="modalDescription"></p>
-                <div class="modal-price" id="modalPrice"></div>
-                <button class="modal-buy-button" id="modalBuyButton">Buy Now</button>
-                <div class="features">
-                    <h3>What you get:</h3>
-                    <ul id="modalFeatures"></ul>
+        </div>
+    </section>
+
+    <section id="contacts" class="contacts-section">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <strong>Телефон:</strong>
+                        <a href="tel:+79670155151">+7 (967) 015-51-51</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong>Адрес:</strong>
+                        <p>Москва, 5 минут пешком от метро Кузьминки</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script>
-        const products = {
-            courses: {
-                title: "Professional Online Courses",
-                price: "5,000 ₽",
-                description: "Comprehensive courses designed by experts. From basics to advanced topics with real-world projects.",
-                images: [
-                    "https://picsum.photos/seed/courses1/800/600",
-                    "https://picsum.photos/seed/courses2/800/600",
-                    "https://picsum.photos/seed/courses3/800/600"
-                ],
-                features: ["Full course access", "Video lectures", "Downloadable resources", "Certificate", "Lifetime updates"],
-                buyLink: "#"
-            },
-            cards: {
-                title: "Premium Design Cards",
-                price: "1,000 ₽",
-                description: "Professional templates for business cards, social media, and personal projects. Fully customizable.",
-                images: [
-                    "https://picsum.photos/seed/cards1/800/600",
-                    "https://picsum.photos/seed/cards2/800/600",
-                    "https://picsum.photos/seed/cards3/800/600"
-                ],
-                features: ["50+ designs", "PSD/AI files", "300 DPI resolution", "Commercial license", "Easy to edit"],
-                buyLink: "#"
-            },
-            games: {
-                title: "Interactive Games Collection",
-                price: "2,000 ₽",
-                description: "Web-based games with clean code and engaging gameplay. Perfect for entertainment or learning.",
-                images: [
-                    "https://picsum.photos/seed/games1/800/600",
-                    "https://picsum.photos/seed/games2/800/600",
-                    "https://picsum.photos/seed/games3/800/600"
-                ],
-                features: ["5 complete games", "Source code", "Mobile responsive", "Documentation", "1 year support"],
-                buyLink: "#"
-            }
-        };
-
-        let currentProduct = null;
-        let currentSlide = 0;
-
-        function openModal(productId) {
-            currentProduct = products[productId];
-            currentSlide = 0;
-            document.getElementById('modalTitle').textContent = currentProduct.title;
-            document.getElementById('modalDescription').textContent = currentProduct.description;
-            document.getElementById('modalPrice').textContent = currentProduct.price;
-            document.getElementById('modalBuyButton').onclick = () => { window.location.href = currentProduct.buyLink; };
-            const featuresList = document.getElementById('modalFeatures');
-            featuresList.innerHTML = '';
-            currentProduct.features.forEach(f => {
-                const li = document.createElement('li'); li.textContent = f; featuresList.appendChild(li);
-            });
-            setupCarousel(currentProduct.images);
-            document.getElementById('productModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('productModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function setupCarousel(images) {
-            const track = document.getElementById('carouselTrack');
-            const dotsContainer = document.getElementById('carouselDots');
-            track.innerHTML = ''; dotsContainer.innerHTML = '';
-            images.forEach((img, i) => {
-                const slide = document.createElement('div'); slide.className = 'carousel-slide';
-                const image = document.createElement('img'); image.src = img; image.alt = `Image ${i+1}`;
-                slide.appendChild(image); track.appendChild(slide);
-                const dot = document.createElement('div');
-                dot.className = 'dot' + (i===0 ? ' active' : '');
-                dot.onclick = () => goToSlide(i);
-                dotsContainer.appendChild(dot);
-            });
-            updateCarousel();
-        }
-
-        function moveCarousel(dir) {
-            if (!currentProduct) return;
-            currentSlide += dir;
-            if (currentSlide < 0) currentSlide = currentProduct.images.length - 1;
-            if (currentSlide >= currentProduct.images.length) currentSlide = 0;
-            updateCarousel();
-        }
-
-        function goToSlide(i) { currentSlide = i; updateCarousel(); }
-
-        function updateCarousel() {
-            document.getElementById('carouselTrack').style.transform = `translateX(-${currentSlide * 100}%)`;
-            document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
-        }
-
-        window.onclick = (e) => { if (e.target.id === 'productModal') closeModal(); };
-        document.onkeydown = (e) => {
-            if (document.getElementById('productModal').style.display === 'block') {
-                if (e.key === 'Escape') closeModal();
-                if (e.key === 'ArrowLeft') moveCarousel(-1);
-                if (e.key === 'ArrowRight') moveCarousel(1);
-            }
-        };
-    </script>
 </body>
 </html>
