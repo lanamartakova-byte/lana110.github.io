@@ -76,7 +76,7 @@
 
         .top-slogan {
             background-color: var(--accent-blue);
-            color: var(--white);
+            color: #000000 !important;
             text-align: center;
             padding: 8px 15px;
             font-family: 'Marck Script', cursive !important;
@@ -275,53 +275,6 @@
 
         .about-text p { margin-bottom: 1.2rem; }
 
-        .methodology-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .method-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(167, 216, 240, 0.2);
-            transition: all 0.4s ease;
-            border-bottom: 3px solid var(--accent-blue);
-        }
-
-        .method-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 229, 255, 0.4);
-        }
-
-        .method-card h3 {
-            color: #000000 !important;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .method-card p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #444;
-        }
-
-        .method-intro {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            color: #000000 !important;
-        }
-
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -507,10 +460,22 @@
             #contacts { padding: 20px 0 !important; }
             .section-title { font-size: 1.5rem !important; }
             
-            .hero { flex-direction: column-reverse; text-align: center; }
+            .hero { 
+                flex-direction: column-reverse; 
+                text-align: center;
+                min-height: auto !important;
+                padding: 40px 0 !important;
+            }
+            
             .hero-content { padding-right: 0; }
             .hero-buttons { justify-content: center; }
-            .photo-frame { width: 300px; height: 300px; }
+            
+            .photo-frame { 
+                width: 250px !important; 
+                height: 250px !important;
+                margin: 20px auto !important;
+            }
+            
             .prices-container { flex-direction: column; align-items: center; }
             .price-card { width: 100%; max-width: 350px; }
             
@@ -640,7 +605,6 @@
         <div class="container">
             <ul class="nav-list">
                 <li><a href="#about" class="nav-link">Обо мне</a></li>
-                <li><a href="#methodology" class="nav-link">Методика</a></li>
                 <li><a href="#lessons" class="nav-link">Уроки</a></li>
                 <li><a href="#prices" class="nav-link">Цены</a></li>
                 <li><a href="#reviews" class="nav-link">Отзывы</a></li>
@@ -681,23 +645,6 @@
                 <p>Будучи студенткой, в течение двух лет подряд (по пять месяцев каждый год) я проходила длительную стажировку в США по программе Work and Travel. Это дало мне глубокое понимание живого языка, американской культуры и современных образовательных подходов, которые я активно использую на занятиях.</p>
                 <p>Помимо работы с малышами, я готовлю школьников к ОГЭ и ЕГЭ, а также к международным экзаменам TOEFL и IELTS. Мои ученики стабильно получают высокие баллы благодаря продуманной системе подготовки, индивидуальному подходу и вниманию к деталям.</p>
                 <p>Я регулярно прохожу курсы повышения квалификации, изучаю современные методики и внедряю новые инструменты в обучение. Помимо основных учебников, я использую собственные материалы: авторские карточки, рабочие тетради, интерактивные задания и онлайн ресурсы.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="methodology">
-        <div class="container">
-            <h2 class="section-title">Методика</h2>
-            <p class="method-intro">
-                Моя методика — это сочетание классических подходов и авторских материалов, созданных специально для разных уровней и возрастов. Я верю, что английский можно выучить легко и с удовольствием, если обучение построено грамотно и интересно.
-            </p>
-            <div class="methodology-grid">
-                <div class="method-card"><h3>Разговорная практика</h3><p>Развитие разговорных навыков с первого занятия. Мы говорим сразу, преодолевая языковой барьер.</p></div>
-                <div class="method-card"><h3>Реальные ситуации</h3><p>Погружение в реальные ситуации общения. Учимся тому, что пригодится в жизни, а не только в учебнике.</p></div>
-                <div class="method-card"><h3>Индивидуальный подход</h3><p>Индивидуальный темп и программа под цели ученика. Мы двигаемся в комфортном для Вас ритме.</p></div>
-                <div class="method-card"><h3>Интерактив и игры</h3><p>Использование интерактивных инструментов, игр и творческих заданий для вовлеченности.</p></div>
-                <div class="method-card"><h3>Правильное произношение</h3><p>Регулярная работа над произношением, чтобы Вас понимали носители языка.</p></div>
-                <div class="method-card"><h3>Стратегия экзаменов</h3><p>Системная подготовка к экзаменам с акцентом на стратегию выполнения заданий.</p></div>
             </div>
         </div>
     </section>
