@@ -496,12 +496,11 @@
             line-height: 1.6;
         }
 
-        /* Стили для карусели на мобильных */
+        /* Стили для каруселей на мобильных */
         @media (max-width: 768px) {
             section { padding: 40px 0 !important; }
             #contacts { padding: 20px 0 !important; }
             .section-title { font-size: 1.5rem !important; }
-            .reviews-grid { column-count: 1 !important; }
             
             .hero { flex-direction: column-reverse; text-align: center; }
             .hero-content { padding-right: 0; }
@@ -522,26 +521,29 @@
                 background-size: cover !important;
             }
 
-            /* Карусель */
+            /* Карусели */
             .mobile-carousel {
                 display: flex !important;
-                overflow: hidden;
-                transition: transform 0.3s ease;
-                gap: 0 !important;
-                padding: 20px 50px !important;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 20px !important;
+                padding: 20px !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
             }
             
+            .mobile-carousel::-webkit-scrollbar {
+                display: none;
+            }
+
             .mobile-carousel .gallery-item,
-            .mobile-carousel .video-item {
-                flex: 0 0 100%;
+            .mobile-carousel .video-item,
+            .mobile-carousel .review-item {
+                flex: 0 0 85%;
+                scroll-snap-align: center;
                 margin: 0;
-                min-width: 100%;
             }
-            
-            .carousel-container {
-                position: relative;
-            }
-            
+
             .carousel-indicators {
                 display: flex;
                 justify-content: center;
@@ -564,37 +566,6 @@
                 width: 30px;
                 border-radius: 5px;
             }
-            
-            .carousel-nav {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background: rgba(255, 255, 255, 0.9);
-                border: none;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                font-size: 1.5rem;
-                cursor: pointer;
-                z-index: 10;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            }
-            
-            .carousel-nav.prev {
-                left: 10px;
-            }
-            
-            .carousel-nav.next {
-                right: 10px;
-            }
-            
-            .carousel-nav:active {
-                background: var(--accent-blue);
-                color: white;
-            }
         }
 
         @media (max-width: 480px) {
@@ -610,9 +581,11 @@
             
             .hero-title { font-size: 1rem !important; }
             .feature-card p { font-size: 1rem !important; }
-            
-            .mobile-carousel {
-                padding: 20px 40px !important;
+
+            .mobile-carousel .gallery-item,
+            .mobile-carousel .video-item,
+            .mobile-carousel .review-item {
+                flex: 0 0 90%;
             }
         }
     </style>
@@ -701,8 +674,8 @@
 
     <section id="lessons">
         <div class="container">
-            <h2 class="section-title">Фото и Видео</h2>
-            <div class="gallery-grid">
+            <h2 class="section-title">Видео</h2>
+            <div class="gallery-grid video-carousel">
                 <!-- Видео 1 -->
                 <div class="video-item">
                     <div style="position: relative; padding-top: 177.78%; width: 100%">
@@ -822,7 +795,10 @@
                         </iframe>
                     </div>
                 </div>
-                
+            </div>
+
+            <h2 class="section-title" style="margin-top: 60px;">Фото</h2>
+            <div class="gallery-grid photo-carousel">
                 <!-- Фотографии (11 штук) -->
                 <div class="gallery-item">
                     <img src="photos/photo0.jpg" alt="Фото 0">
@@ -884,7 +860,7 @@
     <section id="reviews">
         <div class="container">
             <h2 class="section-title">Отзывы</h2>
-            <div class="reviews-grid">
+            <div class="reviews-grid review-carousel">
                 <div class="review-item"><img src="photos/photo11.jpg" alt="Отзыв 1"></div>
                 <div class="review-item"><img src="photos/photo22.jpg" alt="Отзыв 2"></div>
                 <div class="review-item"><img src="photos/photo33.jpg" alt="Отзыв 3"></div>
@@ -927,92 +903,53 @@
         </div>
     </section>
 
-    <!-- Карусель для мобильной версии -->
+    <!-- Скрипт для каруселей -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const gallery = document.querySelector('.gallery-grid');
-        if (!gallery) return;
+        initCarousel('.video-carousel');
+        initCarousel('.photo-carousel');
+        initCarousel('.review-carousel');
+    });
+
+    function initCarousel(selector) {
+        const carousel = document.querySelector(selector);
+        if (!carousel) return;
         
         if (window.innerWidth <= 768) {
-            gallery.classList.add('mobile-carousel');
+            carousel.classList.add('mobile-carousel');
             
-            const carousel = document.createElement('div');
-            carousel.className = 'carousel-container';
-            gallery.parentNode.insertBefore(carousel, gallery);
-            carousel.appendChild(gallery);
-            
-            let currentSlide = 0;
-            let startX = 0;
-            let currentX = 0;
-            let isDragging = false;
-            const items = gallery.children;
+            // Создаём индикаторы
+            const items = carousel.children;
             const totalSlides = items.length;
             
             const indicators = document.createElement('div');
             indicators.className = 'carousel-indicators';
+            
             for (let i = 0; i < totalSlides; i++) {
                 const dot = document.createElement('span');
                 dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-                dot.addEventListener('click', () => goToSlide(i));
+                dot.addEventListener('click', () => {
+                    carousel.scrollTo({
+                        left: carousel.offsetWidth * i,
+                        behavior: 'smooth'
+                    });
+                });
                 indicators.appendChild(dot);
             }
-            carousel.appendChild(indicators);
+            carousel.parentNode.insertBefore(indicators, carousel.nextSibling);
             
-            function goToSlide(index) {
-                currentSlide = index;
-                gallery.style.transform = `translateX(-${currentSlide * 100}%)`;
+            // Обновляем активный индикатор при скролле
+            carousel.addEventListener('scroll', () => {
+                const scrollPos = carousel.scrollLeft;
+                const itemWidth = carousel.offsetWidth;
+                const activeIndex = Math.round(scrollPos / itemWidth);
                 
                 document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentSlide);
+                    dot.classList.toggle('active', i === activeIndex);
                 });
-            }
-            
-            gallery.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                isDragging = true;
-                gallery.style.transition = 'none';
             });
-            
-            gallery.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                currentX = e.touches[0].clientX;
-                const diff = currentX - startX;
-                gallery.style.transform = `translateX(calc(-${currentSlide * 100}% + ${diff}px))`;
-            });
-            
-            gallery.addEventListener('touchend', () => {
-                if (!isDragging) return;
-                isDragging = false;
-                gallery.style.transition = 'transform 0.3s ease';
-                
-                const diff = currentX - startX;
-                if (diff > 50 && currentSlide > 0) {
-                    goToSlide(currentSlide - 1);
-                } else if (diff < -50 && currentSlide < totalSlides - 1) {
-                    goToSlide(currentSlide + 1);
-                } else {
-                    goToSlide(currentSlide);
-                }
-            });
-            
-            const prevBtn = document.createElement('button');
-            prevBtn.className = 'carousel-nav prev';
-            prevBtn.innerHTML = '❮';
-            prevBtn.addEventListener('click', () => {
-                if (currentSlide > 0) goToSlide(currentSlide - 1);
-            });
-            
-            const nextBtn = document.createElement('button');
-            nextBtn.className = 'carousel-nav next';
-            nextBtn.innerHTML = '❯';
-            nextBtn.addEventListener('click', () => {
-                if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
-            });
-            
-            carousel.appendChild(prevBtn);
-            carousel.appendChild(nextBtn);
         }
-    });
+    }
     </script>
 
 </body>
