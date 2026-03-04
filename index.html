@@ -112,7 +112,7 @@
             display: flex;
             justify-content: center;
             list-style: none;
-            gap: 15px;
+            gap: 30px !important;
             flex-wrap: nowrap;
         }
 
@@ -120,9 +120,9 @@
             text-decoration: none;
             color: #000000 !important;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1.8rem !important;
             transition: all 0.3s ease;
-            padding: 6px 12px;
+           padding: 6px 25px !important;
             border-radius: 20px;
             border: 2px solid var(--accent-blue);
             display: inline-block;
@@ -500,7 +500,24 @@
     padding: 10px !important;
     justify-content: center !important;  /* ← Измените на center */
 }
+
+/* ← ВСТАВЬТЕ СЮДА */
+.nav-list {
+    gap: 4px !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    justify-content: center !important;
+    padding: 0 5px !important;
 }
+
+.nav-link {
+    font-size: 0.8rem !important;
+    padding: 4px 8px !important;
+    white-space: nowrap !important;
+}
+
+}  /* ← Строка 503 */
+
 .price-card {
     width: 260px !important;
     min-width: 260px !important;
@@ -540,20 +557,7 @@
             nav {
                 padding: 6px 0 !important;
             }
-            
-           .nav-list {
-    gap: 4px !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    justify-content: center !important;
-    padding: 0 5px !important;
-}
-
-.nav-link {
-    font-size: 0.65rem !important;  /* Ещё меньше */
-    padding: 3px 6px !important;    /* Минимальные отступы */
-    white-space: nowrap !important;
-}
+ 
             }
             
            body {
@@ -659,12 +663,6 @@
             .hero-title { font-size: 1rem !important; }
             .feature-card p { font-size: 0.95rem !important; }
             
-            .nav-link {
-    font-size: 0.65rem !important;  /* Такой же как в 768px */
-    padding: 4px 7px !important;
-    white-space: nowrap !important;
-}
-}
             }
 
             .mobile-carousel .gallery-item,
